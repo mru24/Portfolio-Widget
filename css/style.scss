@@ -1,0 +1,690 @@
+
+@mixin bp-mobile {
+  @media only screen and (max-width: 735px) {
+    @content;
+  }
+}
+@mixin bp-tablet {
+  @media only screen and (min-width: 736px) and (max-width: 1100px) {
+    @content;
+  }
+}
+@mixin bp-landscape {
+  @media only screen and (max-height: 800px) and (orientation: landscape) {
+    @content;
+  }
+}
+
+// COLORS
+$colBlue: #11BFBF;
+$borderCol: #A4A4A4;
+
+*
+{
+  -webkit-box-sizing: border-box;
+     -moz-box-sizing: border-box;
+          box-sizing: border-box;
+}
+html, body
+{
+  margin: 0;
+  padding: 0;
+  width: 100%;
+  height: 100%;
+}
+body
+{
+  background-color: #222;
+  color: white;
+  font-family: 'Open Sans', sans-serif;
+}
+h1, h2, h3, h4, h5, h6
+{
+	font-family: 'Pathway Gothic One', sans-serif;
+	margin:0;
+}
+a
+{
+  color: white;
+  &:hover
+  {
+    color: $colBlue;
+  }
+  &:active
+  {
+    color: white;
+  }
+  &:visited
+  {
+    color: white;
+  }
+}
+ul, label
+{
+	margin:0;
+	padding:0;
+}
+.container
+{
+  width: 100%;
+  height: 100%;
+  position: relative;
+  overflow: hidden;
+  @include bp-mobile
+  {
+    min-height: 100%;
+    overflow-Y: scroll;
+    margin: 0;
+    padding: 0;
+  }
+  @include bp-tablet
+  {
+    overflow-Y: scroll;
+    margin: 0;
+    padding: 0;
+  }
+  &::before
+  {
+    background-image: url(../img/bg1.jpg);
+    -webkit-background-size: cover;
+       -moz-background-size: cover;
+         -o-background-size: cover;
+            background-size: cover;
+    background-repeat: no-repeat;
+    opacity: .2;
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    z-index: -1;
+    @include bp-mobile
+    {
+      min-height: 800px;
+      background-image: url(../img/bg1_mobile.jpg);
+      background-repeat: repeat-y;
+      background-position: center;
+      background-attachment: fixed;
+    }
+    @include bp-tablet
+    {
+      min-height: 600px;
+      background-image: url(../img/bg1_tablet.jpg);
+      background-repeat: repeat-y;
+      background-position: center;
+      background-attachment: fixed;
+    }
+  }
+
+// Main
+  .main
+  {
+    width: 670px;
+    margin: auto;
+    padding-top: 40px;
+    @include bp-mobile
+    {
+      width: 90%;
+      margin: 20px auto;
+      padding-top: 20px;
+    }
+    h1
+    {
+      text-align: center;
+      font-size: 50px;
+      letter-spacing: 5px;
+      word-spacing: 10px;
+      @include bp-mobile
+      {
+        font-size: 25px;
+        word-spacing: normal;
+        padding: 0;
+      }
+      @include bp-tablet
+      {
+        font-size: 30px;
+        word-spacing: normal;
+        padding: 0;
+      }
+      @include bp-landscape
+      {
+        font-size: 30px;
+        word-spacing: normal;
+        padding: 0;
+      }
+    }
+
+  // Navigation
+
+    #navigation
+    {
+      ul
+      {
+        margin-top: 60px;
+        width: 100%;
+        text-align: center;
+        @include bp-mobile
+        {
+          margin-top: 10px;
+          margin-bottom: 20px;
+        }
+        @include bp-tablet
+        {
+          margin: 15px 0;
+        }
+        @include bp-landscape
+        {
+          margin: 14px 0;
+        }
+        li
+        {
+          position: relative;
+          list-style-type: none;
+          display: inline-block;
+          margin: 20px;
+          @include bp-mobile
+          {
+            margin: 0 10px;
+          }
+          @include bp-tablet
+          {
+            margin: 0 10px;
+          }
+          a
+          {
+            text-decoration: none;
+            position: relative;
+            width: 60px;
+            height: 50px;
+            line-height: 50px;
+            color: white;
+            display: block;
+            @include bp-mobile
+            {
+              width: 30px;
+              height: 20px;
+            }
+            &:before
+            {
+            	content: '';
+              border-left: 10px solid transparent;
+              border-right: 10px solid transparent;
+              border-top: 10px solid $colBlue;
+              position: absolute;
+              bottom: 50px;
+              left: 20px;
+              opacity: 0;
+              @include bp-mobile
+              {
+                bottom: 20px;
+                left: 20px;
+              }
+            }
+            i
+            {
+              width: 60px;
+              height: 50px;
+              display: block;
+              font-size: 40px;
+              color: #959595;
+              -webkit-transition: .2s;
+              -o-transition: .2s;
+              -moz-transition: .2s;
+              transition: .2s;
+              @include bp-mobile
+              {
+                width: 30px;
+                height: 20px;
+                font-size: 30px;
+              }
+            }
+            span
+            {
+              position: absolute;
+              bottom: 60px;
+              left: 10px;
+              background-color: $colBlue;
+              -webkit-border-radius: 5px;
+                 -moz-border-radius: 5px;
+                      border-radius: 5px;
+              padding: 0 30px;
+              opacity: 0;
+              @include bp-mobile
+              {
+                bottom: 30px;
+                left: 10px;
+              }
+            }
+          }
+        }
+        .selected i
+        {
+          color: white;
+        }
+      }
+      ul li a:hover:before, ul li a:hover span, ul li a:hover i
+      {
+        -webkit-transition: 0.5s;
+        -o-transition: 0.5s;
+        -moz-transition: 0.5s;
+        transition: 0.5s;
+    	  opacity: 1;
+        color: white
+      }
+    }
+
+  // Wrapper
+
+    #wrapper
+    {
+      width: 100%;
+      height: 450px;
+      padding: 20px;
+      overflow: hidden;
+      background-color: rgba(#222222, 0.5);
+      position: relative;
+      @include bp-mobile
+      {
+        min-height: 580px;
+      }
+      @include bp-tablet
+      {
+        height: 320px;
+      }
+      @include bp-landscape
+      {
+        height: 360px;
+      }
+      form
+      {
+        fieldset
+        {
+          // GENERAL
+          border: none;
+          width: 100%;
+          height: 380px;
+          padding: 20px;
+          position: absolute;
+          @include bp-mobile
+          {
+            min-height: 380px;
+            padding: 10px;
+          }
+          @include bp-tablet
+          {
+            min-height: 380px;
+            padding: 10px;
+          }
+          legend
+          {
+            border: none;
+            text-align: center;
+            font-size: 35px;
+            color: $colBlue;
+            font-weight: 600;
+            padding: 25px;
+            @include bp-mobile
+            {
+              font-size: 25px;
+              padding-top: 20px;
+              padding-bottom: 10px;
+              margin: 0;
+            }
+            @include bp-tablet
+            {
+              font-size: 20px;
+              letter-spacing: 5px;
+              padding: 10px 0;
+              margin: 0;
+            }
+            @include bp-landscape
+            {
+              font-size: 20px;
+              letter-spacing: 5px;
+              padding: 10px 0;
+              margin: 0;
+            }
+          }
+          li
+          {
+            list-style: none;
+          }
+        }
+      }
+
+      // ABOUT
+
+      #about
+      {
+        top: 0;
+        left: 0px;
+        #about-wrapper
+        {
+          #left
+          {
+            float: left;
+            width: 45%;
+            @include bp-mobile
+            {
+              float: none;
+              width: 100%;
+            }
+            img
+            {
+              width: 200px;
+              display: block;
+              margin: auto;
+              @include bp-mobile
+              {
+                width: 160px;
+                margin: auto;
+                padding: 0;
+              }
+              @include bp-tablet
+              {
+                width: 160px;
+                margin: auto;
+                padding: 0;
+              }
+            }
+          }
+          #right
+          {
+            float: left;
+            text-align: left;
+            width: 55%;
+            @include bp-mobile
+            {
+              float: none;
+              width: 100%;
+              text-align: center;
+            }
+            h3
+            {
+              font-size: 30px;
+              letter-spacing: 5px;
+              margin-bottom: 15px;
+              @include bp-mobile
+              {
+                font-size: 20px;
+                margin: 20px 0;
+              }
+              @include bp-tablet
+              {
+                font-size: 20px;
+                padding: 0;
+                margin-bottom: 10px;
+              }
+            }
+            h5
+            {
+              color: $colBlue;
+              font-size: 20px;
+              letter-spacing: 4px;
+              margin-bottom: 6px;
+              padding-bottom: 10px;
+              border-bottom: 1px solid $borderCol;
+            }
+            ul
+            {
+              margin-top: 10px;
+              li
+              {
+                ul
+                {
+                  li
+                  {
+                    margin-bottom: 5px;
+                    font-size: 16px;
+                    letter-spacing: 2px;
+                    @include bp-mobile
+                    {
+                      font-size: 14px;
+                      font-weight: 300;
+                      letter-spacing: 1px;
+                    }
+                    @include bp-tablet
+                    {
+                      font-size: 15px;
+                      font-weight: 300;
+                      letter-spacing: 1px;
+                    }
+                    &:first-child
+                    {
+                      float: left;
+                      font-weight: bold;
+                      @include bp-mobile
+                      {
+                        font-weight: 300;
+                      }
+                      @include bp-tablet
+                      {
+                        font-weight: 300;
+                      }
+                    }
+                    &:last-child
+                    {
+                      float: right;
+                    }
+                    a
+                    {
+                      &:hover
+                      {
+                        color: $colBlue;
+                        text-decoration: underline;
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+
+      // PORTFOLIO
+
+      #work
+      {
+        top: 0;
+        left: 670px;
+        margin: 0;
+        padding: 0;
+        #work-wrapper
+        {
+          ul
+          {
+            @include bp-mobile
+            {
+              width: 272px;
+              height: 270px;
+              display: block;
+              margin: auto;
+            }
+            @include bp-tablet
+            {
+              width: 632px;
+              min-height: 260px;
+              display: block;
+              margin: auto;
+            }
+            li
+            {
+              a
+              {
+                figure
+                {
+                  width: 196.6px;
+                  height: 131px;
+                  float: left;
+                  margin-left: 20px;
+                  margin-bottom: 20px;
+                  position: relative;
+                  overflow: hidden;
+                  @include bp-mobile
+                  {
+                    width: 115px;
+                    height: 70px;
+                    margin: 10px;
+                  }
+                  @include bp-tablet
+                  {
+                    width: 190px;
+                    height: 110px;
+                    margin: 10px;
+                  }
+                  &:hover #shine
+                  {
+                    display: block;
+                    -webkit-animation-name: slide;
+                       -moz-animation-name: slide;
+                         -o-animation-name: slide;
+                            animation-name: slide;
+                    -webkit-animation-duration: 1s;
+                       -moz-animation-duration: 1s;
+                         -o-animation-duration: 1s;
+                            animation-duration: 1s;
+                  }
+                  &:hover img
+                  {
+                    -webkit-transform: scale(1.03);
+                       -moz-transform: scale(1.03);
+                        -ms-transform: scale(1.03);
+                         -o-transform: scale(1.03);
+                            transform: scale(1.03);
+                    -webkit-transition: .5s;
+                    -o-transition: .5s;
+                    -moz-transition: .5s;
+                    transition: .5s;
+                  }
+                  img
+                  {
+                    width: 196.6px;
+                    height: 131px;
+                    display: block;
+                    margin: auto;
+                    -webkit-box-shadow: 0 0 30px #0F0F0F;
+                       -moz-box-shadow: 0 0 30px #0F0F0F;
+                            box-shadow: 0 0 30px #0F0F0F;
+                    @include bp-mobile
+                    {
+                      width: 115px;
+                      height: 70px;
+                    }
+                    @include bp-tablet
+                    {
+                      width: 190px;
+                      height: 110px;
+                    }
+                    &:hover
+                    {
+                      -webkit-box-shadow: 0 0 10px #0F0F0F;
+                         -moz-box-shadow: 0 0 10px #0F0F0F;
+                              box-shadow: 0 0 10px #0F0F0F;
+                    }
+                  }
+                  $covColor: rgba(#CDCDCD, 0.5);
+                  #shine
+                  {
+                    position: absolute;
+                    top: 0;
+                    left: -65%;
+                    width: 50%;
+                  	height: 100%;
+                  	background: -webkit-linear-gradient(left, rgba(255,255,255,0) 0%, rgba(255,255,255,.5) 100%);
+                  	background: -webkit-gradient(linear, left top, right top, from(rgba(255,255,255,0)), to(rgba(255,255,255,.5)));
+                  	background: -moz-linear-gradient(left, rgba(255,255,255,0) 0%, rgba(255,255,255,.5) 100%);
+                  	background: -o-linear-gradient(left, rgba(255,255,255,0) 0%, rgba(255,255,255,.5) 100%);
+                  	background: linear-gradient(to right, rgba(255,255,255,0) 0%, rgba(255,255,255,.5) 100%);
+                  	-webkit-transform: skewX(-17deg);
+                  	   -moz-transform: skewX(-17deg);
+                  	    -ms-transform: skewX(-17deg);
+                  	     -o-transform: skewX(-17deg);
+                  	        transform: skewX(-17deg);
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+
+      // CONTACT
+
+      #skills
+      {
+        top: 0;
+        left: 1340px;
+        #skills-wrapper
+        {
+          padding: 0 20px;
+          .skill
+          {
+            width: 100%;
+            p
+            {
+              width: 20%;
+              float: left;
+              @include bp-mobile
+              {
+                width: 45%;
+              }
+            }
+            .progress
+            {
+              width: 80%;
+              float: left;
+              @include bp-mobile
+              {
+                width: 55%
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}
+footer
+{
+  margin-top: 40px;
+  text-align: center;
+  p
+  {
+    color: $borderCol;
+    @include bp-mobile
+    {
+      color: red;
+    }
+    @include bp-tablet
+    {
+      color: blue;
+    }
+  }
+}
+.clearFloat
+{
+  clear: both;
+}
+
+@-webkit-keyframes slide {
+  100% {
+    left: 125%;
+  }
+}
+
+@-moz-keyframes slide {
+  100% {
+    left: 125%;
+  }
+}
+
+@-o-keyframes slide {
+  100% {
+    left: 125%;
+  }
+}
+
+@keyframes slide {
+  100% {
+    left: 125%;
+  }
+}
